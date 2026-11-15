@@ -1,0 +1,26 @@
+# Environment & Secrets
+.env
+*.env
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+PROJECT_FACTS.md
+# Checkpoints, logs, data caches
+checkpoints/
+runs/
+logs/
+data/cache/
+data/*.csv
+!data/sample_*.csv
+models/*.zip
+models/*.pt
+*.parquet
+
+# Testing & Artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+Thumbs.db
+

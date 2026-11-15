@@ -1,0 +1,74 @@
+scenarios:
+  summer_day:
+    name: "Severe Summer Heatwave"
+    description: "High ambient temperature with peaks up to 42°C, testing HVAC efficiency and cooling demand."
+    quota: 30
+    weather:
+      type: "synthetic"
+      mean_temp_c: 34.0
+      amplitude_temp_c: 8.0
+      peak_hour: 14.5
+    tariff:
+      type: "tou"
+      demand_charge_multiplier: 1.0
+
+  winter_day:
+    name: "Mild Winter Day"
+    description: "Cool ambient temperatures (10-22°C) with low HVAC cooling requirement."
+    quota: 30
+    weather:
+      type: "synthetic"
+      mean_temp_c: 16.0
+      amplitude_temp_c: 6.0
+      peak_hour: 14.0
+    tariff:
+      type: "tou"
+      demand_charge_multiplier: 1.0
+
+  price_spike:
+    name: "Midday Grid Price Spike"
+    description: "Severe midday tariff spike reaching 18 INR/kWh due to grid stress between 12:00 and 16:00."
+    quota: 30
+    weather:
+      type: "synthetic"
+      mean_temp_c: 28.0
+      amplitude_temp_c: 6.0
+      peak_hour: 14.0
+    tariff:
+      type: "spike"
+      spike_start_step: 48 # 12:00
+      spike_end_step: 64 # 16:00
+      spike_rate_inr: 18.5
+      demand_charge_multiplier: 1.2
+
+  heavy_quota:
+    name: "High Production Surge (Heavy Quota)"
+    description: "Elevated production demand requiring 45 jobs completed in 24 hours."
+    quota: 45
+    weather:
+      type: "synthetic"
+      mean_temp_c: 28.0
+      amplitude_temp_c: 5.0
+      peak_hour: 14.0
+    tariff:
+      type: "tou"
+      demand_charge_multiplier: 1.0
+
+  rush_order:
+    name: "Critical Rush Order Batch"
+    description: "Standard quota with unexpected urgent batch released at 11:00 with tight 3-hour deadlines."
+    quota: 32
+    rush_batch:
+      release_step: 44 # 11:00
+      deadline_step: 56 # 14:00
+      count: 6
+      priority: 3.0
+    weather:
+      type: "synthetic"
+      mean_temp_c: 29.0
+      amplitude_temp_c: 6.0
+      peak_hour: 14.0
+    tariff:
+      type: "tou"
+      demand_charge_multiplier: 1.0
+

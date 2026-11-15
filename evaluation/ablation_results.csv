@@ -1,0 +1,3 @@
+configuration,seed,cost_inr,peak_kw,completed_jobs,comfort_violations_deg
+PPO with Weather Forecast,723.0,5325.8018934262955,65.1382130661463,40.0,0.0
+PPO without Weather Forecast (Ablation),723.0,6192.2761063755825,81.66539912101041,40.0,0.0

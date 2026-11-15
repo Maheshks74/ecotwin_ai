@@ -1,0 +1,111 @@
+time_step_hours: 0.25 # 15 minutes
+episode_steps: 96 # 24 hours (96 * 0.25 = 24h)
+
+zones:
+  zone_1:
+    name: "Machining Hall (Zone 1)"
+    thermal_resistance_R: 2.2 # deg C / kW
+    thermal_capacitance_C: 18.0 # kWh / deg C
+    target_temp_c: 24.0 # default setpoint
+    comfort_min_c: 22.0 # minimum comfort band
+    comfort_max_c: 26.0 # maximum comfort band
+    initial_temp_c: 24.0
+    cop_nominal: 3.5 # nominal COP at 25 C ambient
+    cop_temp_coefficient: 0.04 # COP drops by 0.04 per deg C above 25 C
+    cop_min: 1.5
+    cop_max: 4.5
+    max_cooling_kw: 40.0 # maximum cooling thermal capacity (kW)
+    setpoint_options: [22.0, 23.0, 24.0, 25.0, 26.0] # 5 discrete levels
+  zone_2:
+    name: "Forming & Assembly Hall (Zone 2)"
+    thermal_resistance_R: 1.8 # deg C / kW
+    thermal_capacitance_C: 24.0 # kWh / deg C
+    target_temp_c: 24.0
+    comfort_min_c: 22.0
+    comfort_max_c: 26.0
+    initial_temp_c: 24.0
+    cop_nominal: 3.2
+    cop_temp_coefficient: 0.04
+    cop_min: 1.5
+    cop_max: 4.2
+    max_cooling_kw: 55.0
+    setpoint_options: [22.0, 23.0, 24.0, 25.0, 26.0]
+
+machines:
+  - id: "M1"
+    name: "CNC Milling Machine"
+    zone_id: "zone_1"
+    rated_power_kw: 16.0
+    idle_power_fraction: 0.15 # 2.4 kW idle
+    heat_emission_fraction: 0.75 # 75% of power becomes heat
+    processing_steps: # in 15-min steps
+      TypeA: 3 # 45 min
+      TypeB: 2 # 30 min
+      TypeC: 4 # 60 min
+  - id: "M2"
+    name: "Drilling & Tapping Center"
+    zone_id: "zone_1"
+    rated_power_kw: 10.0
+    idle_power_fraction: 0.20 # 2.0 kW idle
+    heat_emission_fraction: 0.70
+    processing_steps:
+      TypeA: 2
+      TypeB: 2
+      TypeC: 3
+  - id: "M3"
+    name: "CNC Precision Lathe"
+    zone_id: "zone_1"
+    rated_power_kw: 14.0
+    idle_power_fraction: 0.18 # 2.52 kW idle
+    heat_emission_fraction: 0.75
+    processing_steps:
+      TypeA: 3
+      TypeB: 1
+      TypeC: 2
+  - id: "M4"
+    name: "Injection Molding Machine"
+    zone_id: "zone_2"
+    rated_power_kw: 28.0
+    idle_power_fraction: 0.15 # 4.2 kW idle
+    heat_emission_fraction: 0.85
+    processing_steps:
+      TypeA: 4
+      TypeB: 3
+      TypeC: 5
+  - id: "M5"
+    name: "Hydraulic Stamping Press"
+    zone_id: "zone_2"
+    rated_power_kw: 24.0
+    idle_power_fraction: 0.12 # 2.88 kW idle
+    heat_emission_fraction: 0.80
+    processing_steps:
+      TypeA: 2
+      TypeB: 4
+      TypeC: 3
+  - id: "M6"
+    name: "Automated Assembly Cell"
+    zone_id: "zone_2"
+    rated_power_kw: 8.0
+    idle_power_fraction: 0.25 # 2.0 kW idle
+    heat_emission_fraction: 0.65
+    processing_steps:
+      TypeA: 2
+      TypeB: 2
+      TypeC: 2
+
+job_types:
+  TypeA:
+    name: "Automotive Precision Bracket"
+    default_deadline_step: 72 # 18:00
+    base_priority: 1.0
+  TypeB:
+    name: "Electronics Enclosure"
+    default_deadline_step: 80 # 20:00
+    base_priority: 1.2
+  TypeC:
+    name: "Heavy Structural Flange"
+    default_deadline_step: 90 # 22:30
+    base_priority: 1.5
+
+default_daily_quota: 30 # total jobs required per 24h episode
+

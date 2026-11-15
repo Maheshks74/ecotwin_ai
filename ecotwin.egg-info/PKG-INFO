@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: ecotwin
+Version: 0.1.0
+Summary: Industrial Digital Twin with RL Energy Optimization
+Author: EcoTwin Research
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: simpy>=4.1.0
+Requires-Dist: gymnasium>=1.0.0
+Requires-Dist: stable-baselines3>=2.3.0
+Requires-Dist: torch>=2.2.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: numpy>=1.26.0
+Requires-Dist: pyyaml>=6.0.0
+Requires-Dist: streamlit>=1.35.0
+Requires-Dist: plotly>=5.20.0
+Requires-Dist: matplotlib>=3.8.0
+Requires-Dist: pytest>=8.0.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: pyarrow>=15.0.0
+Requires-Dist: tensorboard>=2.15.0
+Requires-Dist: google-genai>=1.0.0
+Dynamic: license-file
