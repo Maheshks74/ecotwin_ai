@@ -106,7 +106,8 @@ Copy the template and paste your Google Gemini API key:
 ```bash
 cp .env.example .env
 # Edit .env and set GEMINI_API_KEY=<your_api_key>
-#if .env.example exist create that add api key there ,here we are using gemini model if u want u can chnage model name in pyproject.toml and use that
+#if .env.example exist create that add api key there ,here we are using gemini model
+# if u want you can change model name in config/llm.yaml and use that
 ```
 
 *Note: EcoTwin features an automatic offline **Mock Mode**. If `GEMINI_API_KEY` is empty, the entire pipeline, test suite, and dashboard function offline with deterministic canned responses.*
